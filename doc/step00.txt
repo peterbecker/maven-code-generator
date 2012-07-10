@@ -1,0 +1,33 @@
+=====================================================================
+=                        Introduction                               =
+=====================================================================
+
+Welcome to the Maven Code Generator tutorial.
+
+This little project is designed to guide you through all steps required to create a code generator that
+is integrated with the Maven lifecycle. It will cover a number of technologies to achieve that goal.
+The documentation will only point out the knowledge essential for the project, but there will be pointers
+for further reading.
+
+The idea of this project is to use version control to show how a project like this evolves. Each step in
+creating the generator is checked in as a named version (a.k.a. 'tag') in git. This makes it possible to
+see the project grow and use diffs to see what exactly was changed. The target audience is experienced
+Java developers, but there should be enough references in each step to allow less experienced developers
+to catch up on all relevant topics.
+
+The folder containing this file will collect text files describing each step. These will appear before
+each corresponding step, describing an outline of what will be done. They then get expanded to describe
+the actual change.
+
+At this point in time the project is just an empty Maven project, with the project description file (POM)
+and this documentation file as well as the description of what step 1 will be. To continue you should
+have some basic understanding of git and Maven (see the references below). Time to go on to step 1, which
+is outlined in 'step01.txt'.
+
+
+References:
+-----------
+* http://git-scm.com/
+* http://maven.apache.org/
+
+

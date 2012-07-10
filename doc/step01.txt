@@ -1,0 +1,7 @@
+=====================================================================
+=              Step 1: The Hello World Plugin                       =
+=====================================================================
+
+As a first step we just replicate a standard "Hello World" plugin. This will show how a plugin
+is defined and used. It will also establish the first part of our overall project structure:
+the plugin will be defined in a module inside the top-level project (called the "parent project").
