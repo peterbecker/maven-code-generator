@@ -5,3 +5,23 @@
 As a first step we just replicate a standard "Hello World" plugin. This will show how a plugin
 is defined and used. It will also establish the first part of our overall project structure:
 the plugin will be defined in a module inside the top-level project (called the "parent project").
+
+A Maven plugin is mostly just a subclass of Maven's AbstractMojo class implementing the
+execute() method with the code to be run when the plugin is run. Apart from extending that
+particular class a tag "@goal" has to be placed in the JavaDoc for the class itself. This
+takes the name of the goal to run as an argument.
+
+To make it compile two steps have to be taken in the POM: (1) declare the module to be packaged
+as "maven-plugin" and (2) depend on maven-plugin-api.
+
+Once this has been set up, the plugin can be run by explicitly calling it with a fully qualified
+goal:
+
+  mvn MavenCodeGenerator:plugin:1.0:sayhi
+
+This is a bit awkward, but we won't actually be doing this apart from this initial testing.
+
+
+References:
+-----------
+* http://maven.apache.org/guides/plugin/guide-java-plugin-development.html

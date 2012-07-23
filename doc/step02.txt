@@ -1,0 +1,7 @@
+=====================================================================
+=      Step 2: Running the Plugin as Part of the Lifecycle          =
+=====================================================================
+
+Maven's build lifecycle has a specific phase to generate source code in. This happens just before
+compilation and allows us to generate the sources just in time for the compilation. Our second
+step is to attach our plugin to this phase in a test project.
