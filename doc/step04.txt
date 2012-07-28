@@ -7,6 +7,20 @@ Freemarker as a templating engine and use it to generate an actual Java source f
 To follow this step it is useful to understand what a templating engine does. Please
 refer to the Freemarker home page (see references) if needed.
 
+Using Freemarker in this project is quite straightforward. We use a default Freemarker
+configuration object, which we set up to use class loading via the plugin class to
+retrieve the templates. We use "/templates" as the path, which means we can put our
+templates in the "src/main/resources/templates" folder in out plugin module build.
+
+The template we use as our first test case just uses a single variable and no control
+structures. It is just to prove Freemarker is integrated correctly.
+
+Running the new plugin version as usual ("mvn install" on the parent), we should now
+have a valid Java source file in the target folder of the functest module. The old
+test file might still be around, run a "mvn clean install" to fix that. When checking
+the output of the plugin it is generally better to run the clean phase as well since
+old files will not be deleted otherwise.
+
 
 References:
 -----------

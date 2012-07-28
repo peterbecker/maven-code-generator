@@ -1,0 +1,6 @@
+=====================================================================
+=             Step 5: Compiling the Generated Code                  =
+=====================================================================
+
+While we generate a valid Java file, it still won't be compiled yet. To do this we
+will need to tell Maven to add the code we generate to the compiler input.
