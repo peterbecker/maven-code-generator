@@ -10,8 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>functest</artifactId>
-    <packaging>pom</packaging> <!-- fix from last step: we don't need to create a JAR here,
-                                    the "pom" packaging will suppress the additional artifact -->
 
     <build>
         <plugins>
@@ -25,12 +23,6 @@
                         <goals>
                             <goal>generate</goal>
                         </goals>
-                        <!-- the outputDirectory can be changed like this, it defaults to
-                             target/generated-sources/mavencodegen
-                        <configuration>
-                            <outputDirectory>/some/other/directory</outputDirectory>
-                        </configuration>
-                        -->
                     </execution>
                 </executions>
             </plugin>

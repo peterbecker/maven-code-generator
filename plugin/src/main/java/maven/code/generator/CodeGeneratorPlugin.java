@@ -5,6 +5,7 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.project.MavenProject;
 
 import java.io.*;
 import java.util.HashMap;
@@ -14,6 +15,13 @@ import java.util.Map;
  * @goal generate
  */
 public class CodeGeneratorPlugin extends AbstractMojo {
+
+    /**
+     * The Maven project representing the whole build.
+     *
+     * @parameter expression="${project}"
+     */
+    private MavenProject project;
 
     /**
      * Output directory for generated source files.
@@ -43,5 +51,7 @@ public class CodeGeneratorPlugin extends AbstractMojo {
         } catch (TemplateException e) {
             throw new MojoExecutionException("Can not process template", e);
         }
+
+        project.addCompileSourceRoot(outputDirectory.getAbsolutePath());
     }
 }

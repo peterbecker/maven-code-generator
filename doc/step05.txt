@@ -4,3 +4,21 @@
 
 While we generate a valid Java file, it still won't be compiled yet. To do this we
 will need to tell Maven to add the code we generate to the compiler input.
+
+To achieve this we need to inject the Maven project descriptor into our plugin. This
+can be done in the same way as any other parameter (just use "${project}" as the
+expression. To use it we need to add a new dependency, though. The type of the
+parameter is "MavenProject", which is defined in the new dependency added to the
+plugin: org.apache.maven:maven-project.
+
+This object gives us access to a lot of the configuration of the build -- both read
+and write access is provided. In our case we just want to add a new directory to the
+compilation sources, which requires us calling the corresponding method.
+
+
+References:
+-----------
+??? I still haven't found any good reference on this step. The API docs are useless,
+providing nothing but a short detail without context on the class level. I haven't
+seen any tutorial or similar documentation, I've learnt this myself from reading
+source of other plugins.

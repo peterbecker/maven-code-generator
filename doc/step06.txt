@@ -1,0 +1,15 @@
+=====================================================================
+=          Step 6: Adding an Input File to the Process              =
+=====================================================================
+
+Of course generating the same file every time is not much of a use case for a code
+generator. We could pass the parameters from the POM file as to the plugin using the
+<configuration> element, but that is not very scalable. Maven can create complex
+structures and pass them to the plugin, but it is much more manageable to control the
+code generation from a separate input file.
+
+One of the easiest ways of parsing input is to use XML binding. This allows reading
+XML files into an internal object model (and vice versa). We are going to use JAXB
+(Java API for XML Binding) for this purpose. It lets us generate an XML schema (XSD)
+from an annotated model or it can generate a model from an XSD file. We are going to
+use the latter approach.
