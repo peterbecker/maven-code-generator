@@ -1,0 +1,14 @@
+=====================================================================
+=              Step 4: Using a Templating Engine                    =
+=====================================================================
+
+The next step will be a bit larger in terms of functionality: we are going to add
+Freemarker as a templating engine and use it to generate an actual Java source file.
+To follow this step it is useful to understand what a templating engine does. Please
+refer to the Freemarker home page (see references) if needed.
+
+
+References:
+-----------
+* http://freemarker.sourceforge.net/
+* http://freemarker.sourceforge.net/docs/pgui_quickstart.html

@@ -5,3 +5,22 @@
 As a next step we will create a simple Java source file into the build. This will be written
 using Maven's standard pattern for generated code: a subfolder "generated-sources" in the
 build directory (usually "target").
+
+The path to that output folder is given via a Maven parameter. These are defined with extra
+JavaDoc-style annotations. Here we just use @parameter with an additional "expression" that
+defines the default value. In our case this will be "target/generated-sources/mavencodegen",
+assuming the build directory is still the default.
+
+We can then use this configuration to create an output folder and write a new file into it.
+For now we leave it at writing our usual message. Running the "install" target on the parent
+should now install the updated plugin locally and run the test project, which will create the
+test file in "functest/target/generated-sources/mavencodegen".
+
+Note that the functest POM shows an example of how to change the parameter for a specific
+project. With this particular parameter that should rarely happen, but the same approach can
+be used for other parameters.
+
+
+References:
+-----------
+* http://maven.apache.org/developers/mojo-api-specification.html
