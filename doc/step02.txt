@@ -5,3 +5,21 @@
 Maven's build lifecycle has a specific phase to generate source code in. This happens just before
 compilation and allows us to generate the sources just in time for the compilation. Our second
 step is to attach our plugin to this phase in a test project.
+
+To test the plugin in the build lifecycle we create the new "functest" module which will later
+contain more functional testing for the plugin. At the moment the testing is only manual: if
+we run the "install" target on the top level project, we can see that the plugin is installed
+locally and then run in the functest project. Somewhere amidst all the Maven output will be a
+line containing our little "Hello, world." message.
+
+The plugin is attached to the "generate-sources" phase. This is intended for generation of source
+code that is to be included in the output artifact. There are additional phases where files can be
+generated: "generate-resources" is for generating files that are not meant to be compiled but to
+be included in the output. The "generate-test-sources" and "generate-test-resources" fulfill the
+same functions for test code, i.e. code that is for testing only and not to be included in the
+output artifact.
+
+References:
+-----------
+* http://maven.apache.org/guides/plugin/guide-java-plugin-development.html
+* http://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html

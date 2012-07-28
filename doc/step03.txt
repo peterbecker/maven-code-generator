@@ -1,0 +1,7 @@
+=====================================================================
+=                Step 3: Generating a First File                    =
+=====================================================================
+
+As a next step we will create a simple Java source file into the build. This will be written
+using Maven's standard pattern for generated code: a subfolder "generated-sources" in the
+build directory (usually "target").
