@@ -13,3 +13,14 @@ XML files into an internal object model (and vice versa). We are going to use JA
 (Java API for XML Binding) for this purpose. It lets us generate an XML schema (XSD)
 from an annotated model or it can generate a model from an XSD file. We are going to
 use the latter approach.
+
+The new code now reads an XML file following the XML Schema Definition in the plugin.
+At the moment it is very simple and just lists a number of entities with their name.
+The code generator uses this to generate one copy of the Hello World file for each
+entity.
+
+
+References:
+-----------
+* http://jaxb.java.net/tutorial/
+* http://roseindia.net/jaxb/r/jaxb.shtml
