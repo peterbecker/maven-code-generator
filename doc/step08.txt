@@ -1,0 +1,15 @@
+=====================================================================
+=                   Step 8: Automated Testing                       =
+=====================================================================
+
+So far we have only done manual inspection of the generated code. This is of
+course not really scalable, we should be testing the code generator in some
+automated fashion.
+
+Given that its function is to generate working Java code, the most effective
+testing is to ensure that the generated code works as expected. We could instead
+compare the files generated to some sample files stored, but that tends to be
+very brittle and does not actually cover the actual intent of the code generator.
+
+So to test the code generator we will write normal JUnit tests exercising the
+generated code.

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<mcg:entities xmlns:mcg="maven/code/generator">
-    <entity name="Person"/>
-    <entity name="Role"/>
+<mcg:entities xmlns:mcg="maven/code/generator" package="my.testPackage">
+    <entity name="Person">
+        <property name="name" type="String"/>
+        <property name="birthDate" type="java.util.Date"/>
+    </entity>
+    <entity name="Role">
+        <property name="name" type="String"/>
+        <property name="description" type="String"/>
+    </entity>
 </mcg:entities>

@@ -82,7 +82,7 @@ public class CodeGeneratorPlugin extends AbstractMojo {
 
         Template template;
         try {
-            template = fmConfig.getTemplate("HelloWorld.java.ftl");
+            template = fmConfig.getTemplate("Entity.java.ftl");
         } catch (IOException e) {
             throw new MojoExecutionException("Can not read template", e);
         }
@@ -90,10 +90,14 @@ public class CodeGeneratorPlugin extends AbstractMojo {
     }
 
     private void createSourceFiles(Template template, Entities entities) throws MojoExecutionException {
+        File packageDirectory = new File(outputDirectory, entities.getPackage().replace(".","/"));
+        packageDirectory.mkdirs();
+
         Map<String, Object> data = new HashMap<String, Object>();
+        data.put("package", entities.getPackage());
 
         for (EntityType entity : entities.getEntity()) {
-            File entityFile = new File(outputDirectory, entity.getName() + ".java");
+            File entityFile = new File(packageDirectory, entity.getName() + ".java");
             data.put("entity", entity);
             try {
                 Writer out = new OutputStreamWriter(new FileOutputStream(entityFile));

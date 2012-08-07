@@ -5,3 +5,7 @@
 Of course generating a number of mostly identical Hello World files is not that useful.
 In this step we will add some more input information and use that to generate classes
 that provide fields as well as basic getters and setters for them.
+
+The new code now adds a package name as attribute to the XML toplevel element. The
+entity nodes can now have property elements as children, each with a name and a type.
+This information is then used to create entity classes with the matching properties.

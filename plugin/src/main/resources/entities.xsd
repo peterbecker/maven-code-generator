@@ -6,10 +6,19 @@
             <xs:sequence>
                 <xs:element name="entity" type="entityType" minOccurs="1" maxOccurs="unbounded"/>
             </xs:sequence>
+            <xs:attribute name="package" use="required"/>
         </xs:complexType>
     </xs:element>
 
     <xs:complexType name="entityType">
+        <xs:sequence>
+            <xs:element name="property" type="propertyType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
         <xs:attribute name="name" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="propertyType">
+        <xs:attribute name="name" use="required"/>
+        <xs:attribute name="type" use="required"/>
     </xs:complexType>
 </xs:schema>
