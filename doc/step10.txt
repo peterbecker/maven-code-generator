@@ -1,0 +1,9 @@
+=====================================================================
+=               Step 10: Generating multiple files                  =
+=====================================================================
+
+In this last proper step of our tutorial we will flesh out the example a
+little bit. As mentioned earlier we are not trying to generate a full ORM
+layer, but we will add some simple DAOs to demonstrate how easy it is to
+generate multiple files. The DAOs will also use a base class that will be
+provided by the base module.

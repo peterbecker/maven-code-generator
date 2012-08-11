@@ -1,5 +1,8 @@
 package ${package};
 
+import javax.persistence.Entity;
+
+@Entity
 public class ${entity.name} {
 <#list entity.property as property>
     private ${property.type} ${property.name};

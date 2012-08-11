@@ -12,5 +12,6 @@
     <modules>
         <module>plugin</module>
         <module>functest</module>
+        <module>base</module>
     </modules>
 </project>

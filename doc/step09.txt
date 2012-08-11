@@ -14,3 +14,17 @@ place to put the internal ones (base classes, etc.). Any project that
 uses the generator plugin will then also have to depend on this module,
 but nothing else. The versioning is kept consistent by sharing the same
 parent project.
+
+The new base module just adds a single dependency to the JPA annotation
+API. The generator uses this to flag all classes as entities for the
+purpose of JPA. Our test module just depends on the base module and picks
+up the required dependencies that way. Any production project would just
+do the same, all dependencies of the generated code can then be managed
+easily in sync with the plugin itself.
+
+Of course this code base is not sufficient for a full ORM layer. To
+make this work we would have to also control the special cases such
+as many-to-many relationships, date and time mappings etc. This would
+require expanding our input model (the XSD), which exceeds the scope of
+this tutorial. But all the basic infrastructure for doing this is in
+place now.
