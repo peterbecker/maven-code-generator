@@ -7,3 +7,13 @@ little bit. As mentioned earlier we are not trying to generate a full ORM
 layer, but we will add some simple DAOs to demonstrate how easy it is to
 generate multiple files. The DAOs will also use a base class that will be
 provided by the base module.
+
+The new code shows how the development can be split into a base library
+(or framework) and the generated code. We now also generate two files per
+entity. This approach can be extended to generate all necessary classes
+for a multi-tier architecture.
+
+The testing has become more meaningful, too. We don't just test a simple
+getter, the new test integrates the generated code with Hibernate and an
+in-memory database. Again this approach can be extended to cover a full
+multi-tier architecture.

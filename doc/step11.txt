@@ -1,0 +1,82 @@
+=====================================================================
+=                      Step 11: Over to you                         =
+=====================================================================
+
+The code base is still not all that useful and some shortcuts have been
+taken for the sake of keeping the tutorial simple. But it should give
+a good picture of how efficient and easy code generation in this style
+can be.
+
+The same approach has been used to generate whole web applications from
+the database layer up to the dynamic aspects of the JavaScript frontend.
+Any repetitive code can be generated this way. Development is not much
+harder since debugging can be done in easy to read code.
+
+Some advice before you continue:
+
+1) keep it simple. Always check if it is easier to just write the code.
+   Code generation is not as simple as straight Java code, but it tends
+   to be simpler than some of the more advanced approaches around
+   reflection, wiring and aspect oriented programming.
+
+2) develop changes from the generated code. If you need to fix a bug or
+   add features, do it in the generated code first to see what really
+   needs to be done. Then apply that to the templates for the code you
+   changed.
+
+2) try to find good boundaries. Make it easy to understand which code
+   gets generated, which code is supporting the generated code and which
+   code uses the result. A layered architecture can help, but sometimes
+   there will be a mix of generated and custom code in each layer.
+
+3) generate pretty code. You will see the generated code when debugging.
+   It is also your exit plan: if you ever want to stop generating code,
+   the generated code becomes your source. So put some effort into making
+   it look like the code you'd normally write. Don't mess it up in a way
+   that a quick run of import optimizer and re-formatter won't fix.
+
+4) avoid having code as input to the generator. It gets hard to understand
+   if a single file contains both generated and custom code. Instead try
+   using class hierarchies or delegation. For example: generate a base class
+   (possibly abstract) that is then filled by custom code in the main
+   project.
+
+5) use multiple input files where it makes sense. The tutorial uses only
+   a single XML file as input for the generator. In a larger project it
+   most likely makes sense to have more than one input. For example: if
+   we would generate a web application on top of the entities we have,
+   then the navigation information of the site should probably be separate
+   from the definition of the entities.
+
+6) try to find external owners for the inputs. In the web-app example: the
+   entities file should be very closely related to the conceptual model
+   that your business analyst uses. Ideally it would be exactly that and
+   the BA owns it. If technical mapping is required: put it into another
+   file (see point 5). Similarly the navigation structure should be owned
+   by the UI people. Try and make the navigation file a well understood
+   handover point.
+
+7) don't be shy. If you follow the approach here, you can always opt out:
+   just move the code you don't want to generate anymore into you normal
+   code base and turn the generation off. If you followed the advice in
+   point 3, then you will end up with a code base that is consistent with
+   the overall style of the project and perfectly regular. Chances are you
+   still saved yourself some time. And chances also are that you don't
+   want to opt out anyway :-)
+
+8) use the source, Luke. Feel free to use the code base of this tutorial
+   as a starting point. No point in starting from scratch unless you feel
+   like getting some extra training.
+
+I hope you'll have fun. If not, feel free to mail feedback to me. Of course
+any minor feedback or even positive comments are welcome, too.
+
+Thanks for staying with me for a while,
+
+  peter@peterbecker.de
+
+
+
+PS: let me give you an extra little bit of very specific advice. Try to
+    avoid generating Freemarker templates when using Freemarker templates.
+    It works but gets mind-boggling fast :-)

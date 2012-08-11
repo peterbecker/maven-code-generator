@@ -3,8 +3,6 @@ package maven.code.generator;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import maven.code.generator.Entities;
-import maven.code.generator.EntityType;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.project.MavenProject;
@@ -42,12 +40,15 @@ public class CodeGeneratorPlugin extends AbstractMojo {
      */
     private File entitiesFile;
 
+    private Template entityTemplate;
+    private Template daoTemplate;
+
     public void execute() throws MojoExecutionException {
         try {
             validateParametersAndInitialize();
-            Template template = setUpTemplate();
+            setUpTemplates();
             Entities entities = readEntities();
-            createSourceFiles(template, entities);
+            createSourceFiles(entities);
         } catch (MojoExecutionException e) {
             getLog().error(e);
             throw e;
@@ -76,20 +77,19 @@ public class CodeGeneratorPlugin extends AbstractMojo {
         return entities;
     }
 
-    private Template setUpTemplate() throws MojoExecutionException {
+    private void setUpTemplates() throws MojoExecutionException {
         Configuration fmConfig = new Configuration();
         fmConfig.setClassForTemplateLoading(CodeGeneratorPlugin.class, "/templates");
 
-        Template template;
         try {
-            template = fmConfig.getTemplate("Entity.java.ftl");
+            entityTemplate = fmConfig.getTemplate("Entity.java.ftl");
+            daoTemplate = fmConfig.getTemplate("Dao.java.ftl");
         } catch (IOException e) {
             throw new MojoExecutionException("Can not read template", e);
         }
-        return template;
     }
 
-    private void createSourceFiles(Template template, Entities entities) throws MojoExecutionException {
+    private void createSourceFiles(Entities entities) throws MojoExecutionException {
         File packageDirectory = new File(outputDirectory, entities.getPackage().replace(".","/"));
         packageDirectory.mkdirs();
 
@@ -97,15 +97,30 @@ public class CodeGeneratorPlugin extends AbstractMojo {
         data.put("package", entities.getPackage());
 
         for (EntityType entity : entities.getEntity()) {
-            File entityFile = new File(packageDirectory, entity.getName() + ".java");
             data.put("entity", entity);
-            try {
-                Writer out = new OutputStreamWriter(new FileOutputStream(entityFile));
-                template.process(data, out);
-            } catch (TemplateException e) {
-                throw new MojoExecutionException("Can not process template", e);
-            } catch (IOException e) {
-                throw new MojoExecutionException("Can not generate code at " + entityFile.getAbsolutePath(), e);
+            File entityFile = new File(packageDirectory, entity.getName() + ".java");
+            processTemplate(data, entityTemplate, entityFile);
+            File daoFile = new File(packageDirectory, entity.getName() + "Dao.java");
+            processTemplate(data, daoTemplate, daoFile);
+        }
+    }
+
+    private void processTemplate(Map<String, Object> data, Template template, File entityFile) throws MojoExecutionException {
+        Writer out = null;
+        try {
+            out = new OutputStreamWriter(new FileOutputStream(entityFile));
+            template.process(data, out);
+        } catch (TemplateException e) {
+            throw new MojoExecutionException("Can not process template", e);
+        } catch (IOException e) {
+            throw new MojoExecutionException("Can not generate code at " + entityFile.getAbsolutePath(), e);
+        } finally {
+            if (out != null) {
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    throw new MojoExecutionException("Failed to close output.", e);
+                }
             }
         }
     }
