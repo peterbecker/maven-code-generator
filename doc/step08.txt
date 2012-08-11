@@ -13,3 +13,7 @@ very brittle and does not actually cover the actual intent of the code generator
 
 So to test the code generator we will write normal JUnit tests exercising the
 generated code.
+
+The new test is written the same way we would test normal code that was hand-
+written instead of generated. Obviously we wouldn't normally test such trivial
+functionality, but for now this serves as an example how tests can be written.

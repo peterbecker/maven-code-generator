@@ -1,0 +1,16 @@
+=====================================================================
+=                  Step 9: Adding dependencies                      =
+=====================================================================
+
+Chances are that the generated code will at some stage depend on external
+libraries or some custom code such as base classes. If the code generation
+is to be used only in a single project, then it can be sufficient to just
+let that project pull in the dependencies. In other cases it is better to
+manage the dependencies as part of the generator project, though.
+
+The approach we will take is to add another module into the Maven project
+that will manage the external dependencies and also offer a convenient
+place to put the internal ones (base classes, etc.). Any project that
+uses the generator plugin will then also have to depend on this module,
+but nothing else. The versioning is kept consistent by sharing the same
+parent project.
